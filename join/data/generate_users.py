@@ -35,6 +35,6 @@ if __name__ == '__main__':
     arguments = docopt(__doc__)
     num = int(arguments['<number>'])
     if num <= 0:
-        raise Exception("Number must be a positive")
+        raise Exception("Number of users must be positive")
     separator = arguments['--separator']
     main(num, separator)
