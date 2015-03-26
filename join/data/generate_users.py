@@ -26,7 +26,7 @@ def main(num, separator):
 
 def create_user(id, fake):
     return {
-        'id', id,
+        'id': id,
         'name': fake.name(),
         'email': fake.email(),
         'phone_number': fake.phone_number()

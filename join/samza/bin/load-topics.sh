@@ -1,8 +1,9 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR=${DIR}/..
 
-${ROOT_DIR}/deploy/confluent/bin/kafka-avro-console-producer \
-             --broker-list localhost:9092 --topic questions \
-             --compression-codec snappy \
-             --property schema.registry.url=http://localhost:9081 \
-             --property value.schema="`cat target/generated-schema/avro/FortuneRequest.avsc`" < test-data/requests.json
+NUM_USERS=1000
+NUM_REQUESTS=200
+
+${ROOT_DIR}/../data/generate_users.py $NUM_USERS | ${ROOT_DIR}/deploy/confluent/bin/kafka-console-producer --sync --topic users_json --broker-list localhost:9092 --property "parse.key=true"
+
+${ROOT_DIR}/../data/generate_requests.py $NUM_REQUESTS $NUM_USERS | ${ROOT_DIR}/deploy/confluent/bin/kafka-console-producer --sync --topic requests_json --broker-list localhost:9092
