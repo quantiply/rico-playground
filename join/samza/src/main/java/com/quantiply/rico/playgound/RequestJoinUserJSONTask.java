@@ -47,9 +47,9 @@ public class RequestJoinUserJSONTask implements InitableTask, StreamTask {
 
         Map<String, Object> joined = new HashMap<String, Object>();
         joined.putAll(request);
-        request.put("user_name", user.get("name"));
-        request.put("user_email", user.get("email"));
-        request.put("user_phone", user.get("phone_number"));
+        joined.put("user_name", user.get("name"));
+        joined.put("user_email", user.get("email"));
+        joined.put("user_phone", user.get("phone_number"));
 
         collector.send(new OutgoingMessageEnvelope(outStream, null, null, joined));
     }

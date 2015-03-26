@@ -18,8 +18,3 @@
 	#Run the join job
 	./bin/start-job.sh requests-join-user-json 
 
-    #View answers
-    ./deploy/confluent/bin/kafka-avro-console-consumer --topic fortunes \
-             --zookeeper localhost:2181 \
-             --property schema.registry.url=http://localhost:9081 \
-             --from-beginning
