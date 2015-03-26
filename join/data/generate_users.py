@@ -22,10 +22,11 @@ import json
 def main(num, separator):
     fake = Faker()
     for id in range(1, num+1):
-        print "%s%s%s" % (id, separator, json.dumps(create_user(fake)))
+        print "%s%s%s" % (id, separator, json.dumps(create_user(id, fake)))
 
-def create_user(fake):
+def create_user(id, fake):
     return {
+        'id', id,
         'name': fake.name(),
         'email': fake.email(),
         'phone_number': fake.phone_number()
