@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <prerequisites>
+    <maven>3.0.0</maven>
+  </prerequisites>
+
+  <groupId>com.quantiply.rico-playground</groupId>
+  <artifactId>join-rico</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <name>Rico Join</name>
+  <description>
+      Rico/Samza job which does a join
+  </description>
+  <url>https://github.com/Quantiply/rico</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <rico.version>0.0.1-SNAPSHOT</rico.version>
+    <samza.version>0.9.0</samza.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.quantiply.rico</groupId>
+      <artifactId>core</artifactId>
+      <version>${rico.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.quantiply.rico</groupId>
+      <artifactId>jython</artifactId>
+      <version>${rico.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.quantiply.rico</groupId>
+      <artifactId>samza</artifactId>
+      <version>${rico.version}</version>
+    </dependency>
+  </dependencies>
+
+  <developers>
+    <developer>
+      <name>Roger Hoover</name>
+      <email>roger.hoover@quantiply.com</email>
+      <timezone>-8</timezone>
+    </developer>
+  </developers>
+
+  <repositories>
+    <repository>
+      <id>my-local-repo</id>
+      <url>file://${user.home}/.m2/repository</url>
+    </repository>
+    <repository>
+      <id>apache-releases</id>
+      <url>https://repository.apache.org/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <!-- plugin to build the tar.gz file filled with examples -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/src.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
