@@ -42,8 +42,6 @@ public class RequestJoinUserJSONTask implements InitableTask, StreamTask {
     public void process(IncomingMessageEnvelope envelope, MessageCollector collector, TaskCoordinator coordinator) throws Exception {
         String stream = envelope.getSystemStreamPartition().getSystemStream().getStream();
 
-        System.out.println(envelope.getMessage());
-
         if (stream.equals(userStreamName)) {
             processUserMsg(envelope, collector, coordinator);
         }
